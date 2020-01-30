@@ -3,6 +3,8 @@ package baekjoon;
 import java.io.*;
 import java.util.Stack;
 
+// 균형잡힌 세상
+// https://www.acmicpc.net/problem/4949
 public class Num4949 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
