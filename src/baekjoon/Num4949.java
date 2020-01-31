@@ -6,108 +6,47 @@ import java.util.Stack;
 // 균형잡힌 세상
 // https://www.acmicpc.net/problem/4949
 public class Num4949 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String input;
-        while (!(input = reader.readLine()).equals(".")) {
+        while(true) {
+            String input = br.readLine();
+
+            if(input.equals(".")) {
+                bw.flush();
+                bw.close();
+                return;
+            }
+
             Stack<Character> stack = new Stack<>();
+            boolean result = true;
 
-            for (int i = 0; i < input.length(); i++) {
-                stack.push(input.charAt(i));
-            }
-
-//            int bracketOpenCount = 0;
-//            int bracketCloseCount = 0;
-//            int squareBracketOpenCount = 0;
-//            int squareBracketCloseCount = 0;
-
-            int squareBracketCountWhenClose = 0;
-            int bracketCountWhenClose = 0;
-
-            int bracketCount = 0;
-            int squareBracketCount = 0;
-            boolean isSafety = false;
-
-            for (int i = 0; i < input.length(); i++) {
-
-                char c = stack.pop();
-                if (c == '[') {
-                    if (--squareBracketCount < 0 ||
-                            bracketCountWhenClose != bracketCount) {
+            // 한 글자씩 검사
+            for(char one : input.toCharArray()) {
+                if(one == '(' || one == '[')
+                    stack.push(one);
+                else if(one == ')') {
+                    if(stack.isEmpty() || stack.pop() != '(') {
+                        result = false;
                         break;
                     }
-                } else if (c == ']') {
-                    bracketCountWhenClose = bracketCount;
-                    squareBracketCount++;
-                } else if (c == '(') {
-                    if (--bracketCount < 0 ||
-                            squareBracketCountWhenClose != squareBracketCount) {
+                } else if(one == ']') {
+                    if(stack.isEmpty() || stack.pop() != '[') {
+                        result = false;
                         break;
                     }
-                } else if (c == ')') {
-                    squareBracketCountWhenClose = squareBracketCount;
-                    bracketCount++;
                 }
-
-
-//                if (c == '[') {
-//                    if(isCloseInBracket &&
-//                            bracketOpenCount != bracketCloseCount) {
-//                        isSafety = false;
-//                        break;
-//                    } else {
-//                        isCloseInBracket = false;
-//                    }
-//
-//                    if (++squareBracketOpenCount > squareBracketCloseCount) {
-//                        isSafety = false;
-//                        break;
-//                    }
-//                } else if (c == ']') {
-//                    if (bracketOpenCount != bracketCloseCount) {
-//                        isCloseInBracket = true;
-//                    }
-//                    squareBracketCloseCount++;
-//                } else if (c == '(') {
-//                    if(isCloseInSquareBracket &&
-//                            squareBracketOpenCount != squareBracketCloseCount) {
-//                        isSafety = false;
-//                        break;
-//                    } else {
-//                        isCloseInSquareBracket = false;
-//                    }
-//
-//                    if (++bracketOpenCount > bracketCloseCount) {
-//                        isSafety = false;
-//                        break;
-//                    }
-//                } else if (c == ')') {
-//                    if (squareBracketOpenCount != squareBracketCloseCount) {
-//                        isCloseInSquareBracket = true;
-//                    }
-//                    bracketCloseCount++;
-//
-////                    if (squareBracketOpenCount != squareBracketCloseCount) {
-////                        isSafety = false;
-////                        break;
-////                    } else {
-////                        bracketCloseCount++;
-////                    }
-//                }
             }
 
-            if (bracketCount == 0 && squareBracketCount == 0) isSafety = true;
+            // 모든 검사가 끝났는데 스택이 비어있지 않다면 균형잡히지 않은 것
+            if(!stack.isEmpty())
+                result = false;
 
-            if (isSafety) {
-                writer.write("yse\n");
-            } else {
-                writer.write("no\n");
-            }
+            if(!result)
+                bw.write("no\n");
+            else
+                bw.write("yes\n");
         }
-
-        reader.close();
-        writer.close();
     }
 }
