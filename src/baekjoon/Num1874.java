@@ -15,37 +15,16 @@ public class Num1874 {
         Stack<Integer> stack = new Stack<>();
         String result = "";
 
-        int targetNum = Integer.parseInt(reader.readLine());
-        for (int i = 1; i <= totalLength; i++) {
-            if (targetNum >= i) {
-                stack.push(i);
+        for(int i = 1; i <= totalLength; i++) {
+            int targetNum = Integer.parseInt(reader.readLine());
+            for(int j = i; j <= targetNum; j++) {
+                stack.push(j);
                 result += "+\n";
-                continue;
             }
-            while (true) {
-                if (!stack.isEmpty() && stack.peek() == targetNum) {
-                    stack.pop();
-                    result += "-\n";
-                    targetNum = Integer.parseInt(reader.readLine());
-                    continue;
-                }
-                if (i <= targetNum) {
-                    stack.push(i);
-                    result += "+\n";
-                    break;
-                } else {
-                    result = "NO\n";
-                    break;
-                }
-            }
-        }
 
-        int stackSize = stack.size();
-        for(int i = 0; i < stackSize; i++) {
-            if (!stack.isEmpty() && stack.peek() == targetNum) {
+            if(!stack.isEmpty() && stack.peek() == targetNum) {
                 stack.pop();
                 result += "-\n";
-                if(!stack.isEmpty()) targetNum = Integer.parseInt(reader.readLine());
             } else {
                 result = "NO\n";
                 break;
@@ -53,6 +32,45 @@ public class Num1874 {
         }
 
         writer.write(result);
+
+//        int targetNum = Integer.parseInt(reader.readLine());
+//        for (int i = 1; i <= totalLength; i++) {
+//            if (targetNum >= i) {
+//                stack.push(i);
+//                result += "+\n";
+//                continue;
+//            }
+//            while (true) {
+//                if (!stack.isEmpty() && stack.peek() == targetNum) {
+//                    stack.pop();
+//                    result += "-\n";
+//                    targetNum = Integer.parseInt(reader.readLine());
+//                    continue;
+//                }
+//                if (i <= targetNum) {
+//                    stack.push(i);
+//                    result += "+\n";
+//                    break;
+//                } else {
+//                    result = "NO\n";
+//                    break;
+//                }
+//            }
+//        }
+//
+//        int stackSize = stack.size();
+//        for(int i = 0; i < stackSize; i++) {
+//            if (!stack.isEmpty() && stack.peek() == targetNum) {
+//                stack.pop();
+//                result += "-\n";
+//                if(!stack.isEmpty()) targetNum = Integer.parseInt(reader.readLine());
+//            } else {
+//                result = "NO\n";
+//                break;
+//            }
+//        }
+//
+//        writer.write(result);
 
         reader.close();
         writer.close();

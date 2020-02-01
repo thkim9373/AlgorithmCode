@@ -25,7 +25,7 @@ public class Num9012 {
             int countOfClose = 0;
             for (int k = stack.size(); k > 0; k--) {
                 if (stack.pop() == '(') {
-                    if(++countOfOpen > countOfClose) {
+                    if (++countOfOpen > countOfClose) {
                         break;
                     }
                 } else {
@@ -33,7 +33,7 @@ public class Num9012 {
                 }
             }
 
-            if(countOfOpen == countOfClose) isVPS = true;
+            if (countOfOpen == countOfClose) isVPS = true;
 
             writer.write(isVPS ? "YES \n" : "NO \n");
         }
