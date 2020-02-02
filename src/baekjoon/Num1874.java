@@ -13,64 +13,41 @@ public class Num1874 {
         int totalLength = Integer.parseInt(reader.readLine());
 
         Stack<Integer> stack = new Stack<>();
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
-        for(int i = 1; i <= totalLength; i++) {
-            int targetNum = Integer.parseInt(reader.readLine());
-            for(int j = i; j <= targetNum; j++) {
-                stack.push(j);
-                result += "+\n";
+        int targetNum = Integer.parseInt(reader.readLine());
+        int countReadNumber = 1;
+        boolean isAble = true;
+        for (int i = 1; i <= totalLength; ) {
+
+            while (i <= targetNum) {
+                stack.push(i++);
+                result.append("+\n");
             }
 
-            if(!stack.isEmpty() && stack.peek() == targetNum) {
-                stack.pop();
-                result += "-\n";
-            } else {
-                result = "NO\n";
+            if (stack.isEmpty()) {
+                result = new StringBuilder("NO\n");
                 break;
             }
+
+            while (!stack.isEmpty() && targetNum < i) {
+                if (stack.peek() == targetNum) {
+                    stack.pop();
+                    result.append("-\n");
+                    if (++countReadNumber <= totalLength) targetNum = Integer.parseInt(reader.readLine());
+                } else {
+                    result = new StringBuilder("NO\n");
+                    isAble = false;
+                    break;
+                }
+            }
+
+            if (!isAble) break;
         }
 
-        writer.write(result);
+        if (result.toString().equals("")) result = new StringBuilder("NO\n");
 
-//        int targetNum = Integer.parseInt(reader.readLine());
-//        for (int i = 1; i <= totalLength; i++) {
-//            if (targetNum >= i) {
-//                stack.push(i);
-//                result += "+\n";
-//                continue;
-//            }
-//            while (true) {
-//                if (!stack.isEmpty() && stack.peek() == targetNum) {
-//                    stack.pop();
-//                    result += "-\n";
-//                    targetNum = Integer.parseInt(reader.readLine());
-//                    continue;
-//                }
-//                if (i <= targetNum) {
-//                    stack.push(i);
-//                    result += "+\n";
-//                    break;
-//                } else {
-//                    result = "NO\n";
-//                    break;
-//                }
-//            }
-//        }
-//
-//        int stackSize = stack.size();
-//        for(int i = 0; i < stackSize; i++) {
-//            if (!stack.isEmpty() && stack.peek() == targetNum) {
-//                stack.pop();
-//                result += "-\n";
-//                if(!stack.isEmpty()) targetNum = Integer.parseInt(reader.readLine());
-//            } else {
-//                result = "NO\n";
-//                break;
-//            }
-//        }
-//
-//        writer.write(result);
+        writer.write(result.toString());
 
         reader.close();
         writer.close();
