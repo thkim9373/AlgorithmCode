@@ -3,10 +3,10 @@ package baekjoon;
 import java.io.*;
 import java.util.StringTokenizer;
 
+// 블랙잭
+// https://www.acmicpc.net/problem/2798
 public class Num2798 {
     public static void main(String[] args) throws IOException {
-        // 블랙잭
-        // https://www.acmicpc.net/problem/2798
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 

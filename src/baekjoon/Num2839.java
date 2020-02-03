@@ -2,9 +2,9 @@ package baekjoon;
 
 import java.io.*;
 
+// 설탕 배달
+// https://www.acmicpc.net/problem/2839
 public class Num2839 {
-    // 설탕 배달
-    // https://www.acmicpc.net/problem/2839
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
