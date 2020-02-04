@@ -2,9 +2,9 @@ package baekjoon;
 
 import java.io.*;
 
+// 분수찾기
+// https://www.acmicpc.net/problem/1193
 public class Num1193 {
-    // 분수찾기
-    // https://www.acmicpc.net/problem/1193
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));

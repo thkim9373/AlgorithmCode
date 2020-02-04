@@ -1,12 +1,11 @@
 package baekjoon;
 
 import java.io.*;
-import java.util.StringTokenizer;
 
+// 분해합
+// https://www.acmicpc.net/problem/2231
 public class Num2231 {
     public static void main(String[] args) throws IOException {
-        // 분해합
-        // https://www.acmicpc.net/problem/2231
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -14,7 +13,7 @@ public class Num2231 {
         int input = Integer.parseInt(inputSting);
         int result = 0;
 
-        for(int i = inputSting.length() * 9; i < input; i++) {
+        for (int i = inputSting.length() * 9; i < input; i++) {
             int num = i;
 
             int sum = 0;
@@ -23,7 +22,7 @@ public class Num2231 {
                 num /= 10;
             }
 
-            if(i + sum == input) {
+            if (i + sum == input) {
                 result = i;
                 break;
             }

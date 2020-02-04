@@ -3,9 +3,9 @@ package baekjoon;
 import java.io.*;
 import java.util.StringTokenizer;
 
+// 손익분기점
+// https://www.acmicpc.net/problem/1712
 public class Num1712 {
-    // 손익분기점
-    // https://www.acmicpc.net/problem/1712
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));

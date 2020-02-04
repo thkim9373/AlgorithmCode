@@ -3,10 +3,10 @@ package baekjoon;
 import java.io.*;
 import java.util.StringTokenizer;
 
+// 덩치
+// https://www.acmicpc.net/problem/7568
 public class Num7568 {
     public static void main(String[] args) throws IOException {
-        // 덩치
-        // https://www.acmicpc.net/problem/7568
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 

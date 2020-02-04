@@ -3,6 +3,8 @@ package baekjoon;
 import java.io.*;
 import java.util.StringTokenizer;
 
+// 체스판 다시 칠하기
+// https://www.acmicpc.net/problem/1018
 public class Num1018 {
     private static char[][] board;
 
