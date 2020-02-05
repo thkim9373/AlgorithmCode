@@ -27,7 +27,10 @@ public class Num2751 {
         writer.close();
     }
 
-    //  https://gmlwjd9405.github.io/2018/05/08/algorithm-shell-sort.html
+    /********************************************************************
+     * Shell sort
+     * https://gmlwjd9405.github.io/2018/05/08/algorithm-shell-sort.html
+     ********************************************************************/
     private static void shellSort(int[] arr, int arrLength) {
         int temp, k, gap;
 
@@ -54,7 +57,11 @@ public class Num2751 {
         }
     }
 
-    //  https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html
+
+    /********************************************************************
+     * Quick sort
+     * https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html
+     ********************************************************************/
     private static void quickSort(int[] arr, int left, int right) {
         if(left < right) {
             int pivotIndex = partition(arr, left, right);
@@ -80,8 +87,12 @@ public class Num2751 {
         return left;
     }
 
-    // https://gmlwjd9405.github.io/2018/05/10/algorithm-heap-sort.html
-    // https://ratsgo.github.io/data%20structure&algorithm/2017/09/27/heapsort/
+
+    /********************************************************************
+     * Heap sort
+     * https://gmlwjd9405.github.io/2018/05/10/algorithm-heap-sort.html
+     * https://ratsgo.github.io/data%20structure&algorithm/2017/09/27/heapsort/
+     ********************************************************************/
     private static void heapSort(int[] arr) {
         int length = arr.length;
 
@@ -90,7 +101,7 @@ public class Num2751 {
         }
         for(int i = length - 1; i >= 0; i--) {
             swap(arr, i, 0);
-            heapify(arr, 0, length);
+            heapify(arr, 0, i);
         }
     }
 
@@ -99,9 +110,10 @@ public class Num2751 {
         int leftNodeIndex = parentNodeIndex * 2 + 1;
         int rightNodeIndex = parentNodeIndex * 2 + 2;
 
-        if(leftNodeIndex < heapSize && arr[parentNodeIndex] < arr[leftNodeIndex]) {
+        if(leftNodeIndex < heapSize && arr[largest] < arr[leftNodeIndex]) {
             largest = leftNodeIndex;
-        } else if(rightNodeIndex < heapSize && arr[parentNodeIndex] < arr[rightNodeIndex]) {
+        }
+        if(rightNodeIndex < heapSize && arr[largest] < arr[rightNodeIndex]) {
             largest = rightNodeIndex;
         }
 
@@ -115,5 +127,14 @@ public class Num2751 {
         int temp = arr[left];
         arr[left] = arr[right];
         arr[right] = temp;
+    }
+
+
+    /********************************************************************
+     * Merge sort
+     * https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html
+     ********************************************************************/
+    private static void mergeSort(int[] arr) {
+
     }
 }
