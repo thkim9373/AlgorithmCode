@@ -15,7 +15,7 @@ public class Num2751 {
             arr[i] = Integer.parseInt(reader.readLine());
         }
 
-        heapSort(arr);
+        mergeSort(arr, 0, arr.length - 1);
 
         StringBuilder builder = new StringBuilder();
 
@@ -63,7 +63,7 @@ public class Num2751 {
      * https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html
      ********************************************************************/
     private static void quickSort(int[] arr, int left, int right) {
-        if(left < right) {
+        if (left < right) {
             int pivotIndex = partition(arr, left, right);
 
             quickSort(arr, left, pivotIndex - 1);
@@ -96,10 +96,10 @@ public class Num2751 {
     private static void heapSort(int[] arr) {
         int length = arr.length;
 
-        for(int i = length / 2; i >= 0; i--) {
+        for (int i = length / 2; i >= 0; i--) {
             heapify(arr, i, length);
         }
-        for(int i = length - 1; i >= 0; i--) {
+        for (int i = length - 1; i >= 0; i--) {
             swap(arr, i, 0);
             heapify(arr, 0, i);
         }
@@ -110,14 +110,14 @@ public class Num2751 {
         int leftNodeIndex = parentNodeIndex * 2 + 1;
         int rightNodeIndex = parentNodeIndex * 2 + 2;
 
-        if(leftNodeIndex < heapSize && arr[largest] < arr[leftNodeIndex]) {
+        if (leftNodeIndex < heapSize && arr[largest] < arr[leftNodeIndex]) {
             largest = leftNodeIndex;
         }
-        if(rightNodeIndex < heapSize && arr[largest] < arr[rightNodeIndex]) {
+        if (rightNodeIndex < heapSize && arr[largest] < arr[rightNodeIndex]) {
             largest = rightNodeIndex;
         }
 
-        if(largest != parentNodeIndex) {
+        if (largest != parentNodeIndex) {
             swap(arr, largest, parentNodeIndex);
             heapify(arr, largest, heapSize);
         }
@@ -134,7 +134,41 @@ public class Num2751 {
      * Merge sort
      * https://gmlwjd9405.github.io/2018/05/08/algorithm-merge-sort.html
      ********************************************************************/
-    private static void mergeSort(int[] arr) {
+    private static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
 
+    private static int[] sortedArr = new int[1000000];
+
+    private static void merge(int[] arr, int left, int mid, int right) {
+
+        int i = left;
+        int j = mid + 1;
+        int k = left;
+
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                sortedArr[k++] = arr[i++];
+            } else {
+                sortedArr[k++] = arr[j++];
+            }
+        }
+
+        if (i > mid) {
+            for (int l = j; l <= right; l++) {
+                sortedArr[k++] = arr[l];
+            }
+        } else {
+            for (int l = i; l <= mid; l++) {
+                sortedArr[k++] = arr[l];
+            }
+        }
+
+        if (right + 1 - left >= 0) System.arraycopy(sortedArr, left, arr, left, right + 1 - left);
     }
 }
