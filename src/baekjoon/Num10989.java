@@ -25,7 +25,7 @@ public class Num10989 {
         int[] result = new int[arr.length];
 
         for (int i : arr) {
-            if(countArr[i] != 0) result[countArr[i]--] = i;
+            if(countArr[i] != 0) result[countArr[i]-- - 1] = i;
         }
 
         for (int i : result) writer.write(i + "\n");
