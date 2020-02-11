@@ -31,7 +31,7 @@ public class Num2178 {
         }
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < m; j++) {
-                if (map[i][j] == 1 && map[i + m][j] == 1) graph.add(i * m + j, (i + 1) * m + j);
+                if (map[i][j] == 1 && map[i + 1][j] == 1) graph.add(i * m + j, (i + 1) * m + j);
             }
         }
 
