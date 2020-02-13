@@ -34,9 +34,11 @@ public class Num2178 {
                 if (map[i][j] == 1 && map[i + 1][j] == 1) graph.add(i * m + j, (i + 1) * m + j);
             }
         }
+        int[] check = new int[n * m];
+        Arrays.fill(check, -1);
+        graph.bfsSearch(check);
 
-        int result = graph.bfsSearch(n * m - 1);
-
+        int result = check[n * m - 1];
         writer.write(result + "\n");
 
         reader.close();
@@ -46,7 +48,6 @@ public class Num2178 {
     static class Graph {
         private ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         private boolean[] visited;
-        private int count = 0;
 
         Graph(int v) {
             for (int i = 0; i < v; i++) {
@@ -60,28 +61,24 @@ public class Num2178 {
             graph.get(b).add(a);
         }
 
-        int bfsSearch(int goalIndex) {
+        void bfsSearch(int[] checked) {
             Queue<Integer> queue = new LinkedList<>();
             HashMap<Integer, Boolean> hashMap = new HashMap<>();
-
+            checked[0] = 1;
             queue.offer(0);
-            count++;
 
             while (!queue.isEmpty()) {
                 int temp = queue.poll();
-                ++count;
-                if (temp == goalIndex) return count;
                 visited[temp] = true;
 
                 for (int i : graph.get(temp)) {
                     if (!visited[i] && !hashMap.containsKey(i)) {
                         queue.offer(i);
                         hashMap.put(i, false);
+                        checked[i] = checked[temp] + 1;
                     }
                 }
             }
-
-            return count;
         }
     }
 }
