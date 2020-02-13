@@ -7,8 +7,8 @@ import java.util.Stack;
 public class Example1 {
 
     public static void main(String[] args) {
-
-        int[] result = solution(new int[]{1, 5, 3, 6, 7, 6, 5});
+        // new int[]{1, 5, 3, 6, 7, 6, 5}
+        int[] result = solution(new int[]{6, 9, 5, 7, 4});
 
         for (int s : result) {
             System.out.print(s + " ");
@@ -25,33 +25,15 @@ public class Example1 {
             heightStack.push(height);
         }
 
-        Stack<Integer> signalStack = new Stack<>();
-        Stack<Integer> receiveStack = new Stack<>();
-        int index = heights.length;
         while (!heightStack.isEmpty()) {
-            signalStack.push(heightStack.pop());
-            index--;
-            if (heightStack.isEmpty()) break;
+            int temp = heightStack.pop();
 
-            while (!signalStack.isEmpty() && signalStack.peek() < heightStack.peek()) {
-                signalStack.pop();
-                receiveStack.push(index);
+            for (int i = heightStack.size(); i >= 0; i--) {
+                if (temp < heights[i]) {
+                    answer[heightStack.size()] = i + 1;
+                    break;
+                }
             }
-//            if (signalStack.peek() < heightStack.peek()) {
-//                while (!signalStack.isEmpty()) {
-//                    signalStack.pop();
-//                    receiveStack.push(index);
-//                }
-//            }
-        }
-
-        while (!signalStack.isEmpty()) {
-            signalStack.pop();
-            receiveStack.push(0);
-        }
-
-        for(int i = 0; i < answer.length; i++) {
-            answer[i] = receiveStack.pop();
         }
 
         return answer;
