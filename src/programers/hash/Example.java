@@ -20,6 +20,7 @@ public class Example {
         Map.Entry<String, Integer> entry = null;
         hashMap.entrySet();
         entry.getKey().substring(1, 2).equals("");
+        Set<Integer> set = new HashSet<>();
 
         //  문자열
         String s = "";
