@@ -25,10 +25,11 @@ public class SortedSearch {
         return findMid(sortedArray, left, right, lessThan);
     }
 
-    public static int countNumbers(int[] sortedArray, int lessThan) {
+    private static int countNumbers(int[] sortedArray, int lessThan) {
 //        int left = 0;
 //        int right = sortedArray.length - 1;
 //        return findMid(sortedArray, left, right, lessThan);
+
         int index = Arrays.binarySearch(sortedArray, lessThan);
         if (index < 0) {
             index = -index - 1;

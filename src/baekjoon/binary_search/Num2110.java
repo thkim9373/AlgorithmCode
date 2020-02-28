@@ -21,23 +21,27 @@ public class Num2110 {
         Arrays.sort(distanceArr);
 
         int min = 1;
-        int max = distanceArr[distanceArr.length - 1] / c;
+        int max = distanceArr[distanceArr.length - 1];
 
         while (min <= max) {
             int gap = (min + max) / 2;
             int count = 1;
             int prevHouse = distanceArr[0];
-            for(int i = 1; i < distanceArr.length; i++) {
-                if(distanceArr[i] - prevHouse >= gap) {
-                    if(++count == c) break;
+            for (int i = 1; i < distanceArr.length; i++) {
+                if (distanceArr[i] - prevHouse >= gap) {
+                    if (++count == c) break;
                     prevHouse = distanceArr[i];
                 }
             }
 
             if (count == c) {
-
+                min = gap + 1;
+            } else {
+                max = gap - 1;
             }
         }
+
+        writer.write(max + "\n");
 
         reader.close();
         writer.close();
