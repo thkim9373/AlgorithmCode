@@ -12,16 +12,25 @@ public class Num1300 {
         int n = Integer.parseInt(reader.readLine());
         int k = Integer.parseInt(reader.readLine());
 
-        int result;
+        int min = 1;
+        int max = k;
+        int result = 0;
 
-        if (n == 0 || k % n == 0) {
-            writer.write(0 + " ");
-            writer.close();
-            reader.close();
-            return;
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            int cnt = 0;
+
+            for (int i = 1; i <= n; i++) {
+                cnt += Math.min(mid / i, n);
+            }
+
+            if (cnt >= k) {
+                max = mid - 1;
+                result = mid;
+            } else {
+                min = mid + 1;
+            }
         }
-
-        result = (k / n) * (k % n);
 
         writer.write(result + " ");
         reader.close();
