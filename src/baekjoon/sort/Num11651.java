@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-//  좌표 정렬하기 1
-//  https://www.acmicpc.net/problem/11650
-public class Num11650 {
+//  좌표 정렬하기 2
+//  https://www.acmicpc.net/problem/11651
+public class Num11651 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -41,10 +41,10 @@ public class Num11650 {
 
         @Override
         public int compareTo(Point o) {
-            if (this.x != o.x) {
-                return this.x - o.x;
-            } else {
+            if (this.y != o.y) {
                 return this.y - o.y;
+            } else {
+                return this.x - o.x;
             }
         }
     }
