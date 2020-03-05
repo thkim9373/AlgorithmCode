@@ -1,13 +1,14 @@
 package baekjoon.backtracking;
 
 import java.io.*;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 //  스도쿠
 //  https://www.acmicpc.net/problem/2580
 public class Num2580 {
     private static int[][] board = new int[9][9];
-    private static Stack<Point> pointStack = new Stack<>();
+    private static List<Point> pointList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -18,18 +19,18 @@ public class Num2580 {
                 int a = Integer.parseInt(strings[j]);
                 board[i][j] = a;
                 if (a == 0) {
-                    pointStack.add(new Point(j, i));
+                    pointList.add(new Point(j, i));
                 }
             }
         }
 
-        getAnswer();
+        getAnswer(0);
 
         reader.close();
     }
 
-    private static void getAnswer() {
-        if (pointStack.empty()) {
+    private static void getAnswer(int index) {
+        if (index == pointList.size()) {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 
             StringBuilder builder = new StringBuilder();
@@ -48,15 +49,14 @@ public class Num2580 {
 
             System.exit(0);
         }
-        Point point = pointStack.pop();
+        Point point = pointList.get(index);
         for (int i = 1; i <= 9; i++) {
             if (isPossible(point, i)) {
                 board[point.y][point.x] = i;
-                getAnswer();
+                getAnswer(index + 1);
                 board[point.y][point.x] = 0;
             }
         }
-        pointStack.push(point);
     }
 
     private static boolean isPossible(Point point, int num) {
