@@ -1,9 +1,7 @@
 package programers;
 
-import java.io.IOException;
-
 public class Base {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println(solution());
     }
 
